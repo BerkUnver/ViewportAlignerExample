@@ -1,0 +1,33 @@
+[gd_scene load_steps=2 format=2]
+
+[sub_resource type="CSharpScript" id=1]
+script/source = "using Godot;
+
+namespace Yeast.GDAddon.Viewport
+{
+    class VSnapParallax : VSnap
+    {
+        [Export]
+        private float _parallaxCoefficient = 1f;
+        public Vector2 ParallaxPosition
+        {
+            get
+            {
+                return Position * _parallaxCoefficient;
+            }
+            set
+            {
+                Position = value * _parallaxCoefficient;
+            }
+        }
+    }
+}"
+
+[node name="VSnapAligner" type="TextureRect"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+expand = true
+script = SubResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
